@@ -63,8 +63,9 @@ export class LicenseChainWeb3 {
 
   async validateLicense(licenseKey: string): Promise<boolean> {
     try {
-      const response = await this.makeRequest('POST', '/licenses/validate', {
-        licenseKey
+      // Use /licenses/verify endpoint with 'key' parameter to match API
+      const response = await this.makeRequest('POST', '/licenses/verify', {
+        key: licenseKey
       });
       return response.data.valid;
     } catch (error) {
